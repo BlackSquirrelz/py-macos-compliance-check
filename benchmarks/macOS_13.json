@@ -1,0 +1,45 @@
+{
+    "cis_benchmarks": [
+      {
+        "test_id": "1.1.1",
+        "test_name": "Disable Automatic Login",
+        "description": "Ensure the 'Automatically log in as' option is not enabled.",
+        "outcome": "Pass if automatic login is disabled, Fail if enabled.",
+        "command": "security authorizationdb read system.login.console",
+        "level": 1
+      },
+      {
+        "test_id": "1.1.2",
+        "test_name": "Require a Password to Wake the Computer from Sleep or Screen Saver",
+        "description": "Ensure the system requires a password to wake from sleep or screen saver.",
+        "outcome": "Pass if password is required, Fail if not required.",
+        "command": "sudo pmset -a requirepassword 1",
+        "level": 1
+      },
+      {
+        "test_id": "2.1.1",
+        "test_name": "Enable FileVault",
+        "description": "Ensure FileVault is enabled for full-disk encryption.",
+        "outcome": "FileVault is On",
+        "command": "fdesetup status",
+        "level": 1
+      },
+      {
+        "test_id": "2.2.2",
+        "test_name": "Enable Gatekeeper",
+        "description": "Ensure Gatekeeper is enabled to validate signed apps.",
+        "outcome": "Pass if Gatekeeper is enabled, Fail if not enabled.",
+        "command": "spctl --status",
+        "level": 2
+      },
+      {
+        "test_id": "3.1",
+        "test_name": "Disable IPv6",
+        "description": "Ensure IPv6 is disabled if not needed.",
+        "outcome": "Pass if IPv6 is disabled, Fail if enabled.",
+        "command": "networksetup -listallnetworkservices | grep -E '(Wi-Fi|Ethernet)' | xargs -I {} networksetup -setv6off {}",
+        "level": 1
+      }
+    ]
+  }
+  
